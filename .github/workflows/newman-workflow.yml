@@ -1,1 +1,17 @@
-#test
+name: Newman Run
+
+on:
+  push:
+    branches:
+    - main
+    
+jobs:
+  newman:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: matt-ball/newman-action@master
+        with:
+          apiKey: ${{ secrets.postmanApiKey }}
+          collection: 001-Unity-Mob-Exp-API.postman_collection.json
+          environment: 8fb3a271-c3ea-44e7-95c9-27c6a715df81
