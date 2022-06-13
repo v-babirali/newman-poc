@@ -1,0 +1,3193 @@
+{
+	"info": {
+		"_postman_id": "ebcec4b2-db05-4a0d-a125-46ee82a9e0b5",
+		"name": "001-Unity-Mob-Exp-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21409244"
+	},
+	"item": [
+		{
+			"name": "Token",
+			"item": [
+				{
+					"name": "Get Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"mobile_guest_access_token\", data.access_token);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{mobile_guest_client_secret}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{mobile_guest_client_id}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": " application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "grant_type=client_credentials&scope=openid device_{{$guid}}"
+						},
+						"url": {
+							"raw": "{{ciam}}/oauth2/token",
+							"host": [
+								"{{ciam}}"
+							],
+							"path": [
+								"oauth2",
+								"token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Location",
+			"item": [
+				{
+					"name": "Get Regions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{external_gw}}/unity-mobile-exp/v1/region",
+							"host": [
+								"{{external_gw}}"
+							],
+							"path": [
+								"unity-mobile-exp",
+								"v1",
+								"region"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Categories",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{external_gw}}/unity-mobile-exp/v1/location/category",
+							"host": [
+								"{{external_gw}}"
+							],
+							"path": [
+								"unity-mobile-exp",
+								"v1",
+								"location",
+								"category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Subcategories",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{external_gw}}/unity-mobile-exp/v1/location/category/Casino/sub-category",
+							"host": [
+								"{{external_gw}}"
+							],
+							"path": [
+								"unity-mobile-exp",
+								"v1",
+								"location",
+								"category",
+								"Casino",
+								"sub-category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Venues",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{external_gw}}/unity-mobile-exp/v1/location/venue",
+							"host": [
+								"{{external_gw}}"
+							],
+							"path": [
+								"unity-mobile-exp",
+								"v1",
+								"location",
+								"venue"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Favorites",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{external_gw}}/unity-mobile-exp/v1/location/favorite",
+							"host": [
+								"{{external_gw}}"
+							],
+							"path": [
+								"unity-mobile-exp",
+								"v1",
+								"location",
+								"favorite"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Communication",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{external_gw}}/unity-mobile-exp/v1/location/communication",
+							"host": [
+								"{{external_gw}}"
+							],
+							"path": [
+								"unity-mobile-exp",
+								"v1",
+								"location",
+								"communication"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Locations",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{external_gw}}/unity-mobile-exp/v1/location",
+							"host": [
+								"{{external_gw}}"
+							],
+							"path": [
+								"unity-mobile-exp",
+								"v1",
+								"location"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get NIN Location",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{external_gw}}/unity-mobile-exp/v1/location/929",
+							"host": [
+								"{{external_gw}}"
+							],
+							"path": [
+								"unity-mobile-exp",
+								"v1",
+								"location",
+								"929"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Nearby Locations",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{external_gw}}/unity-mobile-exp/v1/location/nearby?longitude=-87.406654358&latitude=41.568099976&radius=50&limit=10",
+							"host": [
+								"{{external_gw}}"
+							],
+							"path": [
+								"unity-mobile-exp",
+								"v1",
+								"location",
+								"nearby"
+							],
+							"query": [
+								{
+									"key": "longitude",
+									"value": "-87.406654358"
+								},
+								{
+									"key": "latitude",
+									"value": "41.568099976"
+								},
+								{
+									"key": "radius",
+									"value": "50"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get LOBs",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{external_gw}}/unity-mobile-exp/v1/location/line-of-business",
+							"host": [
+								"{{external_gw}}"
+							],
+							"path": [
+								"unity-mobile-exp",
+								"v1",
+								"location",
+								"line-of-business"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Types",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{external_gw}}/unity-mobile-exp/v1/location/type",
+							"host": [
+								"{{external_gw}}"
+							],
+							"path": [
+								"unity-mobile-exp",
+								"v1",
+								"location",
+								"type"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{mobile_guest_access_token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Lookups",
+			"item": [
+				{
+					"name": "Country",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{external_gw}}/unity-mobile-exp/v1/country",
+							"host": [
+								"{{external_gw}}"
+							],
+							"path": [
+								"unity-mobile-exp",
+								"v1",
+								"country"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "State",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{external_gw}}/unity-mobile-exp/v1/country/:country-code/state",
+							"host": [
+								"{{external_gw}}"
+							],
+							"path": [
+								"unity-mobile-exp",
+								"v1",
+								"country",
+								":country-code",
+								"state"
+							],
+							"variable": [
+								{
+									"key": "country-code",
+									"value": "US"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tiers List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{external_gw}}/unity-mobile-exp/v1/tier/info",
+							"host": [
+								"{{external_gw}}"
+							],
+							"path": [
+								"unity-mobile-exp",
+								"v1",
+								"tier",
+								"info"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{mobile_guest_access_token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Content",
+			"item": [
+				{
+					"name": "Content",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"page_id\", jsonData.pages[0].item.uuid);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{external_gw}}/unity-mobile-exp/v1/content",
+							"host": [
+								"{{external_gw}}"
+							],
+							"path": [
+								"unity-mobile-exp",
+								"v1",
+								"content"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Page Content",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{external_gw}}/unity-mobile-exp/v1/content/page/:page-id",
+							"host": [
+								"{{external_gw}}"
+							],
+							"path": [
+								"unity-mobile-exp",
+								"v1",
+								"content",
+								"page",
+								":page-id"
+							],
+							"variable": [
+								{
+									"key": "page-id",
+									"value": "{{page_id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Content Errors",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{external_gw}}/unity-mobile-exp/v1/content/error",
+							"host": [
+								"{{external_gw}}"
+							],
+							"path": [
+								"unity-mobile-exp",
+								"v1",
+								"content",
+								"error"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{mobile_guest_access_token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Signup",
+			"item": [
+				{
+					"name": "Get Global Default Preferences",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Correlation-ID",
+								"value": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{external_gw}}/unity-mobile-exp/v1/profile/preference/global/default",
+							"host": [
+								"{{external_gw}}"
+							],
+							"path": [
+								"unity-mobile-exp",
+								"v1",
+								"profile",
+								"preference",
+								"global",
+								"default"
+							]
+						},
+						"description": "Validate profile during signup"
+					},
+					"response": []
+				},
+				{
+					"name": "Fresh Address - Validate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Correlation-ID",
+								"value": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{external_gw}}/unity-mobile-exp/v1/validate-email?value=qa_testing12345@shrss.com",
+							"host": [
+								"{{external_gw}}"
+							],
+							"path": [
+								"unity-mobile-exp",
+								"v1",
+								"validate-email"
+							],
+							"query": [
+								{
+									"key": "value",
+									"value": "qa_testing12345@shrss.com"
+								}
+							]
+						},
+						"description": "Validate profile during signup"
+					},
+					"response": []
+				},
+				{
+					"name": "Signup - Validation - Invalid Mobile Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Signup - Status 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Signup - Invalid Mobile Number\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.code).to.eql(\"MS027\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"profile_dob\", _.random(1940, 1980)+'-'+_.random(10,12)+'-'+_.random(10,31));\r",
+									"\r",
+									"pm.environment.set(\"profile_zip\", _.random(10000, 99999));\r",
+									"\r",
+									"var mobileNumber = pm.variables.replaceIn(\"{{$randomPhoneNumber}}\");\r",
+									"mobileNumber = mobileNumber.replace(\"-\", \"\").replace(\"-\", \"\");\r",
+									"pm.environment.set(\"profile_mobile\", mobileNumber);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Correlation-ID",
+								"value": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstName\": \"{{$randomFirstName}}\",\n  \"lastName\": \"{{$randomLastName}}\",\n  \"email\": \"{{$randomFirstName}}.{{$randomLastName}}{{$randomAlphaNumeric}}@yopmail.com\",\n  \"mobile\": \"{{$randomPhoneNumber}}\",\n  \"mobileCountryCode\": \"US\",\n  \"postalCode\": \"{{profile_zip}}\",\n  \"password\": \"{{$randomPassword}}@{{$randomAlphaNumeric}}{{$randomInt}}\",\n  \"dateOfBirth\": \"{{profile_dob}}\",\n  \"sourceLead\": \"Web\",\n  \"consentTerms\": true,\n  \"consentMarketing\": true\n}"
+						},
+						"url": {
+							"raw": "{{external_gw}}/unity-mobile-exp/v1/profile/signup",
+							"host": [
+								"{{external_gw}}"
+							],
+							"path": [
+								"unity-mobile-exp",
+								"v1",
+								"profile",
+								"signup"
+							]
+						},
+						"description": "Validate profile during signup"
+					},
+					"response": []
+				},
+				{
+					"name": "Signup - Validation - DOB Req.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Signup - Status 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Signup - Field is required\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.code).to.eql(\"MS014\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"profile_dob\", _.random(1940, 1980)+'-'+_.random(10,12)+'-'+_.random(10,31));\r",
+									"\r",
+									"pm.environment.set(\"profile_zip\", _.random(10000, 99999));\r",
+									"\r",
+									"var mobileNumber = pm.variables.replaceIn(\"{{$randomPhoneNumber}}\");\r",
+									"mobileNumber = mobileNumber.replace(\"-\", \"\").replace(\"-\", \"\");\r",
+									"pm.environment.set(\"profile_mobile\", mobileNumber);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Correlation-ID",
+								"value": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstName\": \"{{$randomFirstName}}\",\n  \"lastName\": \"{{$randomLastName}}\",\n  \"email\": \"{{$randomFirstName}}.{{$randomLastName}}{{$randomAlphaNumeric}}@yopmail.com\",\n  \"mobile\": \"{{profile_mobile}}\",\n  \"mobileCountryCode\": \"US\",\n  \"postalCode\": \"{{profile_zip}}\",\n  \"password\": \"{{$randomPassword}}@{{$randomAlphaNumeric}}{{$randomInt}}\",\n  \"sourceLead\": \"Web\",\n  \"consentTerms\": true,\n  \"consentMarketing\": true\n}"
+						},
+						"url": {
+							"raw": "{{external_gw}}/unity-mobile-exp/v1/profile/signup",
+							"host": [
+								"{{external_gw}}"
+							],
+							"path": [
+								"unity-mobile-exp",
+								"v1",
+								"profile",
+								"signup"
+							]
+						},
+						"description": "Validate profile during signup"
+					},
+					"response": []
+				},
+				{
+					"name": "Signup - Validation - Min Age",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Signup - Status 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Signup - Must be at 18 yrs old\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.code).to.eql(\"MSN002\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"profile_dob\", _.random(1940, 1980)+'-'+_.random(10,12)+'-'+_.random(10,31));\r",
+									"\r",
+									"pm.environment.set(\"profile_zip\", _.random(10000, 99999));\r",
+									"\r",
+									"var mobileNumber = pm.variables.replaceIn(\"{{$randomPhoneNumber}}\");\r",
+									"mobileNumber = mobileNumber.replace(\"-\", \"\").replace(\"-\", \"\");\r",
+									"pm.environment.set(\"profile_mobile\", mobileNumber);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Correlation-ID",
+								"value": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstName\": \"{{$randomFirstName}}\",\n  \"lastName\": \"{{$randomLastName}}\",\n  \"email\": \"{{$randomFirstName}}.{{$randomLastName}}{{$randomAlphaNumeric}}@yopmail.com\",\n  \"mobile\": \"{{profile_mobile}}\",\n  \"mobileCountryCode\": \"US\",\n  \"postalCode\": \"{{profile_zip}}\",\n  \"password\": \"{{$randomPassword}}@{{$randomAlphaNumeric}}{{$randomInt}}\",\n  \"dateOfBirth\": \"2015-01-01\",\n  \"sourceLead\": \"Web\",\n  \"consentTerms\": true,\n  \"consentMarketing\": true\n}"
+						},
+						"url": {
+							"raw": "{{external_gw}}/unity-mobile-exp/v1/profile/signup",
+							"host": [
+								"{{external_gw}}"
+							],
+							"path": [
+								"unity-mobile-exp",
+								"v1",
+								"profile",
+								"signup"
+							]
+						},
+						"description": "Validate profile during signup"
+					},
+					"response": []
+				},
+				{
+					"name": "Signup - Validation - T&C",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Signup - Status 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Signup - Must accept terms & conditions\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.code).to.eql(\"MSN008\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"profile_dob\", _.random(1940, 1980)+'-'+_.random(10,12)+'-'+_.random(10,31));\r",
+									"\r",
+									"pm.environment.set(\"profile_zip\", _.random(10000, 99999));\r",
+									"\r",
+									"var mobileNumber = pm.variables.replaceIn(\"{{$randomPhoneNumber}}\");\r",
+									"mobileNumber = mobileNumber.replace(\"-\", \"\").replace(\"-\", \"\");\r",
+									"pm.environment.set(\"profile_mobile\", mobileNumber);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Correlation-ID",
+								"value": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstName\": \"{{$randomFirstName}}\",\n  \"lastName\": \"{{$randomLastName}}\",\n  \"email\": \"{{$randomFirstName}}.{{$randomLastName}}{{$randomAlphaNumeric}}@yopmail.com\",\n  \"mobile\": \"{{profile_mobile}}\",\n  \"mobileCountryCode\": \"US\",\n  \"postalCode\": \"{{profile_zip}}\",\n  \"password\": \"{{$randomPassword}}@{{$randomAlphaNumeric}}{{$randomInt}}\",\n  \"dateOfBirth\": \"{{profile_dob}}\",\n  \"sourceLead\": \"Web\",\n  \"consentTerms\": false,\n  \"consentMarketing\": false\n}"
+						},
+						"url": {
+							"raw": "{{external_gw}}/unity-mobile-exp/v1/profile/signup",
+							"host": [
+								"{{external_gw}}"
+							],
+							"path": [
+								"unity-mobile-exp",
+								"v1",
+								"profile",
+								"signup"
+							]
+						},
+						"description": "Validate profile during signup"
+					},
+					"response": []
+				},
+				{
+					"name": "Signup - Validation - Password Validation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Signup - Status 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Signup - Password criteria doesn't match\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.code).to.eql(\"MS018\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"profile_dob\", _.random(1940, 1980)+'-'+_.random(10,12)+'-'+_.random(10,31));\r",
+									"\r",
+									"pm.environment.set(\"profile_zip\", _.random(10000, 99999));\r",
+									"\r",
+									"var mobileNumber = pm.variables.replaceIn(\"{{$randomPhoneNumber}}\");\r",
+									"mobileNumber = mobileNumber.replace(\"-\", \"\").replace(\"-\", \"\");\r",
+									"pm.environment.set(\"profile_mobile\", mobileNumber);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Correlation-ID",
+								"value": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstName\": \"{{$randomFirstName}}\",\n  \"lastName\": \"{{$randomLastName}}\",\n  \"email\": \"{{$randomFirstName}}.{{$randomLastName}}{{$randomAlphaNumeric}}@yopmail.com\",\n  \"mobile\": \"{{profile_mobile}}\",\n  \"mobileCountryCode\": \"US\",\n  \"postalCode\": \"{{profile_zip}}\",\n  \"password\": \"Password23232\",\n  \"dateOfBirth\": \"{{profile_dob}}\",\n  \"sourceLead\": \"Web\",\n  \"consentTerms\": true,\n  \"consentMarketing\": false\n}"
+						},
+						"url": {
+							"raw": "{{external_gw}}/unity-mobile-exp/v1/profile/signup",
+							"host": [
+								"{{external_gw}}"
+							],
+							"path": [
+								"unity-mobile-exp",
+								"v1",
+								"profile",
+								"signup"
+							]
+						},
+						"description": "Validate profile during signup"
+					},
+					"response": []
+				},
+				{
+					"name": "Signup - Duplicated Customer - Phone Match",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Signup - Status 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Signup - Existing Account\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.code).to.eql(\"MSN006\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"profile_dob\", _.random(1940, 1980)+'-'+_.random(10,12)+'-'+_.random(10,31));\r",
+									"\r",
+									"pm.environment.set(\"profile_zip\", _.random(10000, 99999));\r",
+									"\r",
+									"var mobileNumber = pm.variables.replaceIn(\"{{$randomPhoneNumber}}\");\r",
+									"mobileNumber = mobileNumber.replace(\"-\", \"\").replace(\"-\", \"\");\r",
+									"pm.environment.set(\"profile_mobile\", mobileNumber);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Correlation-ID",
+								"value": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstName\": \"John\",\n  \"lastName\": \"Smith\",\n  \"email\": \"{{$randomFirstName}}.{{$randomLastName}}{{$randomAlphaNumeric}}@yopmail.com\",\n  \"mobile\": \"9099099999\",\n  \"mobileCountryCode\": \"US\",\n  \"postalCode\": \"{{profile_zip}}\",\n  \"password\": \"Password01@\",\n  \"dateOfBirth\": \"1980-01-01\",\n  \"sourceLead\": \"Mob sourceLead\",\n  \"consentTerms\": true,\n  \"consentMarketing\": true\n}"
+						},
+						"url": {
+							"raw": "{{external_gw}}/unity-mobile-exp/v1/profile/signup",
+							"host": [
+								"{{external_gw}}"
+							],
+							"path": [
+								"unity-mobile-exp",
+								"v1",
+								"profile",
+								"signup"
+							]
+						},
+						"description": "Validate profile during signup"
+					},
+					"response": []
+				},
+				{
+					"name": "Signup - Duplicated Customer - Zipcode Match",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Signup - Status 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Signup - Existing Account\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.code).to.eql(\"MSN006\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"profile_dob\", _.random(1940, 1980)+'-'+_.random(10,12)+'-'+_.random(10,31));\r",
+									"\r",
+									"pm.environment.set(\"profile_zip\", _.random(10000, 99999));\r",
+									"\r",
+									"var mobileNumber = pm.variables.replaceIn(\"{{$randomPhoneNumber}}\");\r",
+									"mobileNumber = mobileNumber.replace(\"-\", \"\").replace(\"-\", \"\");\r",
+									"pm.environment.set(\"profile_mobile\", mobileNumber);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Correlation-ID",
+								"value": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstName\": \"Mohsin\",\n  \"lastName\": \"Naeem\",\n  \"email\": \"{{$randomEmail}}\",\n  \"mobile\": \"9099099991\",\n  \"mobileCountryCode\": \"US\",\n  \"postalCode\": \"33321\",\n  \"password\": \"Password01@\",\n  \"dateOfBirth\": \"1980-01-01\",\n  \"sourceLead\": \"Web\",\n  \"consentTerms\": true,\n  \"consentMarketing\": true\n}"
+						},
+						"url": {
+							"raw": "{{external_gw}}/unity-mobile-exp/v1/profile/signup",
+							"host": [
+								"{{external_gw}}"
+							],
+							"path": [
+								"unity-mobile-exp",
+								"v1",
+								"profile",
+								"signup"
+							]
+						},
+						"description": "Validate profile during signup"
+					},
+					"response": []
+				},
+				{
+					"name": "Signup - Existing Activated Account",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Signup - Status 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Signup - Existing Activated Account\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.code).to.eql(\"MSN006\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"profile_dob\", _.random(1940, 1980)+'-'+_.random(10,12)+'-'+_.random(10,31));\r",
+									"\r",
+									"pm.environment.set(\"profile_zip\", _.random(10000, 99999));\r",
+									"\r",
+									"var mobileNumber = pm.variables.replaceIn(\"{{$randomPhoneNumber}}\");\r",
+									"mobileNumber = mobileNumber.replace(\"-\", \"\").replace(\"-\", \"\");\r",
+									"pm.environment.set(\"profile_mobile\", mobileNumber);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Correlation-ID",
+								"value": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstName\": \"Mohsin\",\n  \"lastName\": \"Naeem\",\n  \"email\": \"mohsin.naeem@shrss.com\",\n  \"mobile\": \"9546147618\",\n  \"mobileCountryCode\": \"US\",\n  \"postalCode\": \"33321\",\n  \"password\": \"Password01@\",\n  \"dateOfBirth\": \"1980-01-01\",\n  \"sourceLead\": \"Web\",\n  \"consentTerms\": true,\n  \"consentMarketing\": true\n}"
+						},
+						"url": {
+							"raw": "{{external_gw}}/unity-mobile-exp/v1/profile/signup",
+							"host": [
+								"{{external_gw}}"
+							],
+							"path": [
+								"unity-mobile-exp",
+								"v1",
+								"profile",
+								"signup"
+							]
+						},
+						"description": "Validate profile during signup"
+					},
+					"response": []
+				},
+				{
+					"name": "Signup - Not activated Account",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Signup - Status 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Signup - Account Not Activated\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.code).to.eql(\"MSN005\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"profile_dob\", _.random(1940, 1980)+'-'+_.random(10,12)+'-'+_.random(10,31));\r",
+									"\r",
+									"pm.environment.set(\"profile_zip\", _.random(10000, 99999));\r",
+									"\r",
+									"var mobileNumber = pm.variables.replaceIn(\"{{$randomPhoneNumber}}\");\r",
+									"mobileNumber = mobileNumber.replace(\"-\", \"\").replace(\"-\", \"\");\r",
+									"pm.environment.set(\"profile_mobile\", mobileNumber);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Correlation-ID",
+								"value": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstName\": \"Jordy\",\n  \"lastName\": \"Doyle\",\n  \"email\": \"Jaylen.Schowalter8@yopmail.com\",\n  \"mobile\": \"4462638824\",\n  \"mobileCountryCode\": \"US\",\n  \"postalCode\": \"33321\",\n  \"password\": \"Password01@\",\n  \"dateOfBirth\": \"1968-12-13\",\n  \"sourceLead\": \"Web\",\n  \"consentTerms\": true,\n  \"consentMarketing\": true\n}"
+						},
+						"url": {
+							"raw": "{{external_gw}}/unity-mobile-exp/v1/profile/signup",
+							"host": [
+								"{{external_gw}}"
+							],
+							"path": [
+								"unity-mobile-exp",
+								"v1",
+								"profile",
+								"signup"
+							]
+						},
+						"description": "Validate profile during signup"
+					},
+					"response": []
+				},
+				{
+					"name": "Signup New Customer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Signup - Status 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Signup - Profile Created\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.code).to.eql(\"MS021\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"profile_dob\", _.random(1940, 1980)+'-'+_.random(10,12)+'-'+_.random(10,31));\r",
+									"\r",
+									"pm.environment.set(\"profile_zip\", _.random(10000, 99999));\r",
+									"\r",
+									"var mobileNumber = pm.variables.replaceIn(\"{{$randomPhoneNumber}}\");\r",
+									"mobileNumber = mobileNumber.replace(\"-\", \"\").replace(\"-\", \"\");\r",
+									"pm.environment.set(\"profile_mobile\", mobileNumber);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Correlation-ID",
+								"value": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstName\": \"{{$randomFirstName}}\",\n  \"lastName\": \"{{$randomLastName}}\",\n  \"email\": \"{{$randomFirstName}}.{{$randomLastName}}{{$randomAlphaNumeric}}@yopmail.com\",\n  \"mobile\": \"{{profile_mobile}}\",\n  \"mobileCountryCode\": \"US\",\n  \"postalCode\": \"{{profile_zip}}\",\n  \"password\": \"{{patron_password}}\",\n  \"dateOfBirth\": \"{{profile_dob}}\",\n  \"sourceLead\": \"Web\",\n  \"consentTerms\": true,\n  \"consentMarketing\": true\n}"
+						},
+						"url": {
+							"raw": "{{external_gw}}/unity-mobile-exp/v1/profile/signup",
+							"host": [
+								"{{external_gw}}"
+							],
+							"path": [
+								"unity-mobile-exp",
+								"v1",
+								"profile",
+								"signup"
+							]
+						},
+						"description": "Validate profile during signup"
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{mobile_guest_access_token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Activation",
+			"item": [
+				{
+					"name": "In-Venue Verification",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"transactionId\": \"fcd2c935-f2ab-44b3-bd0a-41a252d258f1\",\r\n    \"emailOTP\": \"971782\",\r\n    \"scenario\":\"IN_VENUE_SIGNUP\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{external_gw}}/unity-mobile-exp/v1/profile/verify-email?user-id=3e7350bf-6219-4446-ac13-a125e64fff7a",
+							"host": [
+								"{{external_gw}}"
+							],
+							"path": [
+								"unity-mobile-exp",
+								"v1",
+								"profile",
+								"verify-email"
+							],
+							"query": [
+								{
+									"key": "user-id",
+									"value": "3e7350bf-6219-4446-ac13-a125e64fff7a"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{mobile_guest_access_token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"function jwt_decode(j) {",
+									"    var parts = j.split('.');",
+									"    return JSON.parse(atob(parts[1]));",
+									"}",
+									"",
+									"var data = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"mobile_login_access_token\", data.access_token);",
+									"",
+									"var decodedJwt = jwt_decode(data.id_token);",
+									"",
+									"postman.setEnvironmentVariable(\"account_number\", decodedJwt.account_no);",
+									"postman.setEnvironmentVariable(\"user_id\", decodedJwt.user_id);",
+									"postman.setEnvironmentVariable(\"profile_id\", decodedJwt.profile_id);",
+									"postman.setEnvironmentVariable(\"email\", decodedJwt.email);",
+									"",
+									"pm.environment.unset(\"authorizationCode\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{mobile_login_client_secret}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{mobile_login_client_id}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": " application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "unity_mobile_password",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "{{patron_username}}",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{patron_password}}",
+									"type": "text"
+								},
+								{
+									"key": "scope",
+									"value": "openid",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{ciam}}/oauth2/token",
+							"host": [
+								"{{ciam}}"
+							],
+							"path": [
+								"oauth2",
+								"token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Dashboard",
+			"item": [
+				{
+					"name": "Get Profile",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Get Profile - Status 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Correlation-ID",
+								"value": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{external_gw}}/unity-mobile-exp/v1/profile/:profile_id",
+							"host": [
+								"{{external_gw}}"
+							],
+							"path": [
+								"unity-mobile-exp",
+								"v1",
+								"profile",
+								":profile_id"
+							],
+							"variable": [
+								{
+									"key": "profile_id",
+									"value": "{{profile_id}}"
+								}
+							]
+						},
+						"description": "Validate profile during signup"
+					},
+					"response": []
+				},
+				{
+					"name": "Unity Points",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Unity Balance Check\", function () {\r",
+									"    pm.expect(jsonData.balance).gt(0);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Correlation-ID",
+								"value": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{external_gw}}/unity-mobile-exp/v1/profile/:profile-id/gaming/:account-number/unity-point",
+							"host": [
+								"{{external_gw}}"
+							],
+							"path": [
+								"unity-mobile-exp",
+								"v1",
+								"profile",
+								":profile-id",
+								"gaming",
+								":account-number",
+								"unity-point"
+							],
+							"variable": [
+								{
+									"key": "profile-id",
+									"value": "{{profile_id}}"
+								},
+								{
+									"key": "account-number",
+									"value": "{{account_number}}"
+								}
+							]
+						},
+						"description": "Validate profile during signup"
+					},
+					"response": []
+				},
+				{
+					"name": "Free Play",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Free Play Balance\", function () {\r",
+									"    pm.expect(jsonData.balances.length).gt(0);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Correlation-ID",
+								"value": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{external_gw}}/unity-mobile-exp/v1/profile/:profile-id/gaming/:account-number/free-play",
+							"host": [
+								"{{external_gw}}"
+							],
+							"path": [
+								"unity-mobile-exp",
+								"v1",
+								"profile",
+								":profile-id",
+								"gaming",
+								":account-number",
+								"free-play"
+							],
+							"variable": [
+								{
+									"key": "profile-id",
+									"value": "{{profile_id}}"
+								},
+								{
+									"key": "account-number",
+									"value": "{{account_number}}"
+								}
+							]
+						},
+						"description": "Validate profile during signup"
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{mobile_login_access_token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Profile",
+			"item": [
+				{
+					"name": "Update Personal Info",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Profile updated\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.code).to.eql(\"MA005\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var mobileNumber = pm.variables.replaceIn(\"{{$randomPhoneNumber}}\");\r",
+									"mobileNumber = mobileNumber.replace(\"-\", \"\").replace(\"-\", \"\");\r",
+									"pm.environment.set(\"profile_mobile\", mobileNumber);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-Correlation-ID",
+								"value": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"{{$randomFirstName}}\",\r\n    \"lastName\": \"{{$randomLastName}}\",\r\n    \"mobilePhone\": {\r\n        \"phoneNumber\": \"{{profile_mobile}}\",\r\n        \"countryCode\": \"US\"\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "{{external_gw}}/unity-mobile-exp/v1/profile/:profile_id/personal-information",
+							"host": [
+								"{{external_gw}}"
+							],
+							"path": [
+								"unity-mobile-exp",
+								"v1",
+								"profile",
+								":profile_id",
+								"personal-information"
+							],
+							"variable": [
+								{
+									"key": "profile_id",
+									"value": "{{profile_id}}"
+								}
+							]
+						},
+						"description": "Validate profile during signup"
+					},
+					"response": []
+				},
+				{
+					"name": "Profile - Email Confirmation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Email Confirmation - Status 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Email confirmed\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.code).to.eql(\"SAM016\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Correlation-ID",
+								"value": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"transactionId\": \"a70c3f6f-add1-4d79-aa09-60648108370f\",\n  \"emailOTP\": \"065754\"\n}"
+						},
+						"url": {
+							"raw": "{{external_gw}}/unity-mobile-exp/v1/profile/verify-email?user-id=107c9db7-99a5-4f5d-8329-dc7437bb1469",
+							"host": [
+								"{{external_gw}}"
+							],
+							"path": [
+								"unity-mobile-exp",
+								"v1",
+								"profile",
+								"verify-email"
+							],
+							"query": [
+								{
+									"key": "user-id",
+									"value": "107c9db7-99a5-4f5d-8329-dc7437bb1469"
+								}
+							]
+						},
+						"description": "Validate profile during signup"
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{mobile_login_access_token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Preference",
+			"item": [
+				{
+					"name": "Get Preferences",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Correlation-ID",
+								"value": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{external_gw}}/unity-mobile-exp/v1/profile/:profile_id/preference",
+							"host": [
+								"{{external_gw}}"
+							],
+							"path": [
+								"unity-mobile-exp",
+								"v1",
+								"profile",
+								":profile_id",
+								"preference"
+							],
+							"variable": [
+								{
+									"key": "profile_id",
+									"value": "{{profile_id}}"
+								}
+							]
+						},
+						"description": "Validate profile during signup"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Preferences",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Profile updated\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.code).to.eql(\"SA004\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-Correlation-ID",
+								"value": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"communicationPreference\": {\r\n    \"global\": {\r\n      \"sendMailTo\": \"home\",\r\n      \"unityHardRock\": {\r\n        \"sendMail\": {{$randomBoolean}},\r\n        \"sendEmail\": \"{{$randomBoolean}}\"\r\n      },\r\n      \"casinos\": {\r\n        \"sendMail\": {{$randomBoolean}},\r\n        \"sendEmail\": \"{{$randomBoolean}}\"\r\n      },\r\n      \"cafes\": {\r\n        \"sendMail\": {{$randomBoolean}},\r\n        \"sendEmail\": \"{{$randomBoolean}}\"\r\n      },\r\n      \"hotels\": {\r\n        \"sendMail\": {{$randomBoolean}},\r\n        \"sendEmail\": \"{{$randomBoolean}}\"\r\n      },\r\n      \"rockShop\": {\r\n        \"sendMail\": {{$randomBoolean}},\r\n        \"sendEmail\": \"{{$randomBoolean}}\"\r\n      }\r\n    },\r\n    \"properties\": [\r\n      {\r\n        \"propertyCode\": \"929\",\r\n        \"sendMail\": {{$randomBoolean}},\r\n        \"sendEmail\": \"{{$randomBoolean}}\"\r\n      }\r\n    ]\r\n  },\r\n  \"onlinePreference\": {\r\n    \"preferredProperties\": [\r\n      {\r\n        \"propertyCode\": \"929\",\r\n        \"isPreferred\": true\r\n      }\r\n    ]\r\n  }\r\n}"
+						},
+						"url": {
+							"raw": "{{external_gw}}/unity-mobile-exp/v1/profile/:profile_id/preference?account-number={{account_number}}",
+							"host": [
+								"{{external_gw}}"
+							],
+							"path": [
+								"unity-mobile-exp",
+								"v1",
+								"profile",
+								":profile_id",
+								"preference"
+							],
+							"query": [
+								{
+									"key": "account-number",
+									"value": "{{account_number}}"
+								}
+							],
+							"variable": [
+								{
+									"key": "profile_id",
+									"value": "{{profile_id}}"
+								}
+							]
+						},
+						"description": "Validate profile during signup"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Opt-out Preference",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Profile updated\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.code).to.eql(\"SA004\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-Correlation-ID",
+								"value": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"communicationPreference\": {\r\n    \"global\": {\r\n      \"sendMailTo\": \"home\",\r\n      \"unityHardRock\": {\r\n        \"sendMail\": {{$randomBoolean}},\r\n        \"sendEmail\": \"{{$randomBoolean}}\"\r\n      },\r\n      \"casinos\": {\r\n        \"sendMail\": {{$randomBoolean}},\r\n        \"sendEmail\": \"{{$randomBoolean}}\"\r\n      },\r\n      \"cafes\": {\r\n        \"sendMail\": {{$randomBoolean}},\r\n        \"sendEmail\": \"{{$randomBoolean}}\"\r\n      },\r\n      \"hotels\": {\r\n        \"sendMail\": {{$randomBoolean}},\r\n        \"sendEmail\": \"{{$randomBoolean}}\"\r\n      },\r\n      \"rockShop\": {\r\n        \"sendMail\": {{$randomBoolean}},\r\n        \"sendEmail\": \"{{$randomBoolean}}\"\r\n      }\r\n    },\r\n    \"properties\": [\r\n      {\r\n        \"propertyCode\": \"929\",\r\n        \"sendMail\": {{$randomBoolean}},\r\n        \"sendEmail\": \"{{$randomBoolean}}\"\r\n      }\r\n    ]\r\n  },\r\n  \"onlinePreference\": {\r\n    \"preferredProperties\": [\r\n      {\r\n        \"propertyCode\": \"929\",\r\n        \"isPreferred\": true\r\n      }\r\n    ]\r\n  }\r\n}"
+						},
+						"url": {
+							"raw": "{{external_gw}}/unity-mobile-exp/v1/profile/:profile_id/opt-out?account-number={{account_number}}",
+							"host": [
+								"{{external_gw}}"
+							],
+							"path": [
+								"unity-mobile-exp",
+								"v1",
+								"profile",
+								":profile_id",
+								"opt-out"
+							],
+							"query": [
+								{
+									"key": "account-number",
+									"value": "{{account_number}}"
+								}
+							],
+							"variable": [
+								{
+									"key": "profile_id",
+									"value": "{{profile_id}}"
+								}
+							]
+						},
+						"description": "Validate profile during signup"
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{mobile_login_access_token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Offers-N-Reservations",
+			"item": [
+				{
+					"name": "Offers Summary",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"startDate\": \"\",\r\n  \"endDate\": \"\",\r\n  \"propertyCodes\": [\r\n  ],\r\n  \"regions\": [\r\n  ],\r\n  \"offerTypes\": [\r\n  ],\r\n  \"linesOfBusiness\": [\r\n  ],\r\n  \"categories\": [ \r\n  ],\r\n  \"subCategories\": [\r\n  ],\r\n  \"venues\": [\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{external_gw}}/unity-mobile-exp/v1/profile/:profile_id/offer/summary?account-number={{account_number}}",
+							"host": [
+								"{{external_gw}}"
+							],
+							"path": [
+								"unity-mobile-exp",
+								"v1",
+								"profile",
+								":profile_id",
+								"offer",
+								"summary"
+							],
+							"query": [
+								{
+									"key": "account-number",
+									"value": "{{account_number}}"
+								}
+							],
+							"variable": [
+								{
+									"key": "profile_id",
+									"value": "{{profile_id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Offers Listing",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"offer_id\", jsonData.offerList[0].id);\r",
+									"var startDate = new Date(jsonData.offerList[0].startDate).toISOString();\r",
+									"pm.environment.set(\"offer_start_date\", startDate);\r",
+									"var endDate = new Date(jsonData.offerList[0].endDate).toISOString();\r",
+									"pm.environment.set(\"offer_end_date\", endDate);\r",
+									"//pm.environment.set(\"offer_prize_id\", jsonData.offerList[0].segment.offerPrizes[0].prizeId);\r",
+									"//pm.environment.set(\"offer_property_code\", jsonData.offerList[0].properties[0].propertycode);\r",
+									"//pm.environment.set(\"offer_sub_location\", jsonData.offerList[0].properties[0].locations[0].subLocation);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"pagination\": {\r\n        \"pageSize\": 10,\r\n        \"offSet\": 1,\r\n        \"sortField\": \"startDate\",\r\n        \"sortDescending\": true\r\n    },\r\n    \"searchParameters\": {\r\n        \"startDate\": \"\",\r\n        \"endDate\": \"\",\r\n        \"propertyCodes\": [],\r\n        \"regions\": [],\r\n        \"offerTypes\": [],\r\n        \"linesOfBusiness\": [],\r\n        \"categories\": [],\r\n        \"subCategories\": [],\r\n        \"venues\": [],\r\n        \"topListingCount\": \"\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{external_gw}}/unity-mobile-exp/v1/profile/:profile_id/offer?account-number={{account_number}}",
+							"host": [
+								"{{external_gw}}"
+							],
+							"path": [
+								"unity-mobile-exp",
+								"v1",
+								"profile",
+								":profile_id",
+								"offer"
+							],
+							"query": [
+								{
+									"key": "account-number",
+									"value": "{{account_number}}"
+								}
+							],
+							"variable": [
+								{
+									"key": "profile_id",
+									"value": "{{profile_id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reservations Summary",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"startDate\": \"\",\r\n  \"endDate\": \"\",\r\n  \"propertyCodes\": [\r\n  ],\r\n  \"regions\": [\r\n  ],\r\n  \"reservationTypes\": [\r\n  ],\r\n  \"linesOfBusiness\": [\r\n  ],\r\n  \"categories\": [ \r\n  ],\r\n  \"subCategories\": [\r\n  ],\r\n  \"venues\": [\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{external_gw}}/unity-mobile-exp/v1/profile/:profile_id/reservation/summary?account-number={{account_number}}",
+							"host": [
+								"{{external_gw}}"
+							],
+							"path": [
+								"unity-mobile-exp",
+								"v1",
+								"profile",
+								":profile_id",
+								"reservation",
+								"summary"
+							],
+							"query": [
+								{
+									"key": "account-number",
+									"value": "{{account_number}}"
+								}
+							],
+							"variable": [
+								{
+									"key": "profile_id",
+									"value": "{{profile_id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reservations Listing",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"pagination\": {\r\n        \"pageSize\": 10,\r\n        \"offSet\": 1,\r\n        \"sortField\": \"startDate\",\r\n        \"sortDescending\": true\r\n    },\r\n    \"searchParameters\": {\r\n        \"startDate\": \"\",\r\n        \"endDate\": \"\",\r\n        \"propertyCodes\": [],\r\n        \"regions\": [],\r\n        \"reservationTypes\": [],\r\n        \"linesOfBusiness\": [],\r\n        \"categories\": [],\r\n        \"subCategories\": [],\r\n        \"venues\": [],\r\n        \"topListingCount\": \"\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{external_gw}}/unity-mobile-exp/v1/profile/:profile_id/reservation?account-number={{account_number}}",
+							"host": [
+								"{{external_gw}}"
+							],
+							"path": [
+								"unity-mobile-exp",
+								"v1",
+								"profile",
+								":profile_id",
+								"reservation"
+							],
+							"query": [
+								{
+									"key": "account-number",
+									"value": "{{account_number}}"
+								}
+							],
+							"variable": [
+								{
+									"key": "profile_id",
+									"value": "{{profile_id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Reservation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var jsonData = pm.response.json();\r",
+									"var testCase = \"Reservation Created - \" + jsonData.errorDescription;\r",
+									"pm.environment.set(\"offer_confirmation_number\", jsonData.confirmationNumber);\r",
+									"\r",
+									"pm.test(testCase, function () {\r",
+									"    pm.expect(jsonData.confirmationNumber).not.eql(null);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"memberOfferId\": \"{{offer_id}}\",\r\n  \"requestSource\": \"Web\",\r\n  \"selectedProperty\": {\r\n    \"propertyCode\": \"{{offer_property_code}}\"\r\n  },\r\n  \"selectedLocation\": {\r\n    \"subLocation\":\"{{offer_sub_location}}\"\r\n  },\r\n  \"selectedDate\": {\r\n    \"startDate\": \"{{offer_start_date}}\",\r\n    \"endDate\": \"{{offer_end_date}}\"\r\n  },\r\n  \"selectedPrize\": {\r\n    \"selectedPrizeId\": \"{{offer_prize_id}}\",\r\n    \"prizeQuantity\": 1,\r\n    \"guestCount\": 0\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{external_gw}}/unity-mobile-exp/v1/profile/:profile_id/offer/:offer-id/reserve?account-number={{account_number}}",
+							"host": [
+								"{{external_gw}}"
+							],
+							"path": [
+								"unity-mobile-exp",
+								"v1",
+								"profile",
+								":profile_id",
+								"offer",
+								":offer-id",
+								"reserve"
+							],
+							"query": [
+								{
+									"key": "account-number",
+									"value": "{{account_number}}"
+								}
+							],
+							"variable": [
+								{
+									"key": "profile_id",
+									"value": "{{profile_id}}"
+								},
+								{
+									"key": "offer-id",
+									"value": "{{offer_id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modify Reservation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"var testCase = \"Reservation Modified - \" + jsonData.errorDescription;\r",
+									"\r",
+									"pm.test(testCase, function () {\r",
+									"    pm.expect(jsonData.confirmationNumber).not.eql(null);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"memberOfferId\": \"{{offer_id}}\",\r\n  \"requestSource\": \"Web\",\r\n  \"confirmationNumber\": \"{{offer_confirmation_number}}\",\r\n  \"selectedProperty\": {\r\n    \"propertyCode\": \"{{offer_property_code}}\"\r\n  },\r\n  \"selectedLocation\": {\r\n    \"subLocation\":\"{{offer_sub_location}}\"\r\n  },\r\n  \"selectedDate\": {\r\n    \"startDate\": \"{{offer_start_date}}\",\r\n    \"endDate\": \"{{offer_end_date}}\"\r\n  },\r\n  \"selectedPrize\": {\r\n    \"selectedPrizeId\": \"{{offer_prize_id}}\",\r\n    \"prizeQuantity\": 2,\r\n    \"guestCount\": 0\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{external_gw}}/unity-mobile-exp/v1/profile/:profile_id/offer/:offer-id/redeem?account-number={{account_number}}",
+							"host": [
+								"{{external_gw}}"
+							],
+							"path": [
+								"unity-mobile-exp",
+								"v1",
+								"profile",
+								":profile_id",
+								"offer",
+								":offer-id",
+								"redeem"
+							],
+							"query": [
+								{
+									"key": "account-number",
+									"value": "{{account_number}}"
+								}
+							],
+							"variable": [
+								{
+									"key": "profile_id",
+									"value": "{{profile_id}}"
+								},
+								{
+									"key": "offer-id",
+									"value": "{{offer_id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancel Reservation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"var testCase = \"Reservation Cancelled - \" + jsonData.errorDescription;\r",
+									"\r",
+									"pm.test(testCase, function () {\r",
+									"    pm.expect(jsonData.confirmationNumber).not.eql(null);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"memberOfferId\": \"{{offer_id}}\",\r\n  \"requestSource\": \"Web\",\r\n  \"confirmationNumber\": \"{{offer_confirmation_number}}\",\r\n  \"selectedProperty\": {\r\n    \"propertyCode\": \"{{offer_property_code}}\"\r\n  },\r\n  \"selectedLocation\": {\r\n    \"subLocation\":\"{{offer_sub_location}}\"\r\n  },\r\n  \"selectedDate\": {\r\n    \"startDate\": \"{{offer_start_date}}\",\r\n    \"endDate\": \"{{offer_end_date}}\"\r\n  },\r\n  \"selectedPrize\": {\r\n    \"selectedPrizeId\": \"{{offer_prize_id}}\",\r\n    \"prizeQuantity\": 2,\r\n    \"guestCount\": 0\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{external_gw}}/unity-mobile-exp/v1/profile/:profile_id/offer/:offer-id/cancel?account-number={{account_number}}",
+							"host": [
+								"{{external_gw}}"
+							],
+							"path": [
+								"unity-mobile-exp",
+								"v1",
+								"profile",
+								":profile_id",
+								"offer",
+								":offer-id",
+								"cancel"
+							],
+							"query": [
+								{
+									"key": "account-number",
+									"value": "{{account_number}}"
+								}
+							],
+							"variable": [
+								{
+									"key": "profile_id",
+									"value": "{{profile_id}}"
+								},
+								{
+									"key": "offer-id",
+									"value": "{{offer_id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{mobile_login_access_token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Transactions",
+			"item": [
+				{
+					"name": "Transaction History Summary",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Correlation-ID",
+								"value": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"pagination\": {\r\n    \"pageSize\": 10,\r\n    \"offSet\": 0,\r\n    \"sortField\": \"startDate\",\r\n    \"sortDescending\": true\r\n  },\r\n  \"searchParameters\": {\r\n    \"startDate\": \"\",\r\n    \"endDate\": \"\",\r\n    \"propertyCode\": [\r\n      \r\n    ],\r\n    \"lineOfBusiness\": [\r\n      \r\n    ],\r\n    \"transactionType\": [\r\n      \r\n    ]\r\n  }\r\n}"
+						},
+						"url": {
+							"raw": "{{external_gw}}/unity-mobile-exp/v1/profile/:profile-id/gaming/:account-number/transaction/summary",
+							"host": [
+								"{{external_gw}}"
+							],
+							"path": [
+								"unity-mobile-exp",
+								"v1",
+								"profile",
+								":profile-id",
+								"gaming",
+								":account-number",
+								"transaction",
+								"summary"
+							],
+							"variable": [
+								{
+									"key": "profile-id",
+									"value": "{{profile_id}}"
+								},
+								{
+									"key": "account-number",
+									"value": "{{account_number}}"
+								}
+							]
+						},
+						"description": "Validate profile during signup"
+					},
+					"response": []
+				},
+				{
+					"name": "Transaction History",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Correlation-ID",
+								"value": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"pagination\": {\r\n    \"pageSize\": 10,\r\n    \"offSet\": 0,\r\n    \"sortField\": \"startDate\",\r\n    \"sortDescending\": true\r\n  },\r\n  \"searchParameters\": {\r\n    \"startDate\": \"\",\r\n    \"endDate\": \"\",\r\n    \"propertyCode\": [\r\n      \r\n    ],\r\n    \"lineOfBusiness\": [\r\n      \r\n    ],\r\n    \"transactionType\": [\r\n      \r\n    ]\r\n  }\r\n}"
+						},
+						"url": {
+							"raw": "{{external_gw}}/unity-mobile-exp/v1/profile/:profile-id/gaming/:account-number/transaction/history",
+							"host": [
+								"{{external_gw}}"
+							],
+							"path": [
+								"unity-mobile-exp",
+								"v1",
+								"profile",
+								":profile-id",
+								"gaming",
+								":account-number",
+								"transaction",
+								"history"
+							],
+							"variable": [
+								{
+									"key": "profile-id",
+									"value": "{{profile_id}}"
+								},
+								{
+									"key": "account-number",
+									"value": "{{account_number}}"
+								}
+							]
+						},
+						"description": "Validate profile during signup"
+					},
+					"response": []
+				},
+				{
+					"name": "Discover",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Correlation-ID",
+								"value": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"startDate\": \"2021-09-01T00:00:00Z\",\r\n  \"endDate\": \"2021-10-01T00:00:00Z\",\r\n  \"propertyCode\": \"929\",\r\n  \"lineOfBusiness\": \"\"\r\n}"
+						},
+						"url": {
+							"raw": "{{external_gw}}/unity-mobile-exp/v1/profile/:profile-id/discover?accountNumber={{account_number}}",
+							"host": [
+								"{{external_gw}}"
+							],
+							"path": [
+								"unity-mobile-exp",
+								"v1",
+								"profile",
+								":profile-id",
+								"discover"
+							],
+							"query": [
+								{
+									"key": "accountNumber",
+									"value": "{{account_number}}"
+								}
+							],
+							"variable": [
+								{
+									"key": "profile-id",
+									"value": "{{profile_id}}"
+								}
+							]
+						},
+						"description": "Validate profile during signup"
+					},
+					"response": []
+				},
+				{
+					"name": "Win/Loss Statement",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Correlation-ID",
+								"value": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{external_gw}}/unity-mobile-exp/v1/profile/:profile-id/gaming/:account-number/statement?year=2021&propertycode=929",
+							"host": [
+								"{{external_gw}}"
+							],
+							"path": [
+								"unity-mobile-exp",
+								"v1",
+								"profile",
+								":profile-id",
+								"gaming",
+								":account-number",
+								"statement"
+							],
+							"query": [
+								{
+									"key": "year",
+									"value": "2021"
+								},
+								{
+									"key": "propertycode",
+									"value": "929"
+								}
+							],
+							"variable": [
+								{
+									"key": "profile-id",
+									"value": "{{profile_id}}"
+								},
+								{
+									"key": "account-number",
+									"value": "{{account_number}}"
+								}
+							]
+						},
+						"description": "Validate profile during signup"
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{mobile_login_access_token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	]
+}
